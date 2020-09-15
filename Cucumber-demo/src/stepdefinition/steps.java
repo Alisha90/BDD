@@ -13,17 +13,15 @@ import junit.framework.Assert;
 
 public class steps {
 	WebDriver driver;
-	@Before
-	public void beforetest()
-	{
-		driver = new ChromeDriver();
-		System.setProperty("WebDriver.chrome.driver", "D:\\chromedriver_win32\\chromedriver.exe");
-	}
+	
 	
 	@Given("^Login application should be launched$")
 	public void login_application_should_be_launched()  {
 	   //I am launching the login application
-		driver.get("https://opensource-demo.orangehrmlive.com/");
+		System.setProperty("webdriver.chrome.driver", "D://chromedriver_win32//Chrome driver 85//chromedriver_win32 (1)//chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://opensource-demo.orangehrmlive.com/");
 	    
 	    
 	}
@@ -40,12 +38,9 @@ public class steps {
 	public void login_should_be_successful()  {
 		String expected = driver.findElement(By.id("welcome")).getText();
 	   Assert.assertEquals(expected, "Welcome Linda");
+	   driver.close();
 	  
 	}
 
-@After
-public void aftertest()
-{
-	driver.close();
-}
+
 }
